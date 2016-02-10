@@ -3,7 +3,7 @@
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">The Devops skill check</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/dreamnite/devops" property="cc:attributionName" rel="cc:attributionURL">Jean-Paul Robinson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/dreamnite/devops" rel="dct:source">https://github.com/dreamnite/devops</a>.
 
 ## Introduction
-This test is designed to check basic devops related skills. It is designed to assess basic understanding of a devops workflow, version control, and Chef. Ideal usage is for personal development or as a skill assessment for potential candidates
+This test is designed to check basic devops related skills. It is designed to assess basic understanding of a devops workflow, version control, and Chef. Ideal usage is for personal development or as a skill assessment for potential candidates.
 
 It does assume a basic familiarity with the basic terms, and operation of an apache web server.
 
@@ -28,6 +28,7 @@ The following skills will be tested:
     * Ability to create a (working) recipe
     * Usage of node attributes to control output
     * Proper metadata maintenance
+    * Berksfile creation
 
 # The Test
 
@@ -52,8 +53,14 @@ Read the following section of requirements carefully, they form the basis for th
 1. The webserver should serve an index.html
 1. The website should display the following text, replacing test_url with the value of `node['devops']['test_url']`:
 ```
-This website created by chef for the Devops skill test located at <test_url>
+This website created by Chef for the Devops skill test located at <test_url>
 ```
+1. Include the default recipe from https://github.com/dreamnite/include_me
+
+1. Update metadata with all dependencies.
+
+1. Create a Berksfile to include dependencies. Make sure you use a proper source.
+
 1. Your cookbook should pass foodcritic with no errors. Sparing use of `~FC` syntax is acceptable, with an accompanying commented explanation.
 
 ### 2.1 Testing
@@ -65,7 +72,7 @@ A major part of the devops philosophy is test driven development. Therefore, we 
 Please feel free to do commits as you would naturally in your own workflow. Your first commit to this branch does not need to be perfect, we all have git commits that say things like "Fixed typo", "Corrected syntax error", or even "Fixed thing I wrote at 2 am when I really needed sleep".
 
 #### 2.1.1 Basic unit testing
-1. Write a basic chefspec test to ensure the default recipe compiles and converges with default values on a linux platform of your choice. The test should be stored in `spec/unit/recipes/default_spec.rb`
+1. Write a basic Chefspec test to ensure the default recipe compiles and converges with default values on a linux platform of your choice. The test should be stored in `spec/unit/recipes/default_spec.rb`
 
 #### 2.1.2 Functional/integration tests
 1. Create a kitchen.yml that sets up a linux machine (your choice of flavor) and runs the `devops::default` recipe, with default attributes. The kitchen-ec2 driver is preferred for ease of evaluation, but use of vagrant is also fine.
@@ -77,7 +84,7 @@ Please feel free to do commits as you would naturally in your own workflow. Your
 
 
 ### 2.2 Cookbook, recipes, and attributes.
-This next section will deal with your ability to write a valid chef cookbook to the requirements above. Please read all directions carefully.
+This next section will deal with your ability to write a valid Chef cookbook to the requirements above. Please read all directions carefully.
 
 #### 2.2.0 Showing your work
 1. Create a branch from master called `cookbook_section`. All your work for this section should be done in that branch. As before, commit naturally as you would in your normal workflow.
@@ -102,6 +109,6 @@ Basic evaluation criteria for the test will be as follows:
   * Do the tests cover the requirements as requested?
 * Section 2.2: Does the `cookbook_section` branch exist?
   * Does the cookbook pass foodcritic?
-  * Does it pass chefspec?
+  * Does it pass Chefspec?
   * Does it pass a kitchen run?
 * Section 3 is evaluated as pass/fail. Lack of a pull request is an automatic failure :wink:
