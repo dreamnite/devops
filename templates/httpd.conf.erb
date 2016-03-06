@@ -39,7 +39,7 @@ ServerRoot "/etc/httpd"
 # prevent Apache from glomming onto all bound IP addresses.
 #
 #Listen 12.34.56.78:80
-Listen <%= @web_port%>
+Listen <%= @web_port %>
 
 #
 # Dynamic Shared Object (DSO) Support
@@ -116,7 +116,7 @@ ServerAdmin root@localhost
 # documents. By default, all requests are taken from this directory, but
 # symbolic links and aliases may be used to point to other locations.
 #
-DocumentRoot "<%= @web_root_dir%>"
+DocumentRoot "<%= @web_root_dir %>"
 
 #
 # Relax access to content within /var/www.

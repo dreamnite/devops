@@ -9,6 +9,7 @@
 include_recipe 'include_me'
 web_root_dir = node['devops']['web']['root_dir']
 web_port     = node['devops']['web']['port']
+test_url     = node['devops']['test_url']
 # ---------------------------------------------------------------------------
 # We're assuming rhel/centos
 # ---------------------------------------------------------------------------
@@ -16,10 +17,10 @@ return if !node[:platform_family].include?("rhel")
 # ---------------------------------------------------------------------------
 # Install httpd & associated service
 # ---------------------------------------------------------------------------
-package 'Install Apache' do
-    package_name 'httpd'
+package 'httpd' do
+    action :install
 end
-service "httpd" do
+service 'httpd' do
   supports :status => true, :restart => true, :reload => true
   action [ :enable ]
 end
@@ -42,6 +43,16 @@ directory web_root_dir do
     group 'root'
     mode '755'
     notifies :restart, "service[httpd]"
+end
+
+template "#{web_root_dir}/index.html" do
+  source 'index.html.erb'
+  user 'root'
+  group 'root'
+  mode '644'
+  variables ({
+      'test_url' => test_url
+  })
 end
 # ---------------------------------------------------------------------------
 # Ensure correct selinux context
