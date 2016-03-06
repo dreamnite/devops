@@ -6,6 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe 'include_me'
 web_root_dir = node['devops']['web']['root_dir']
 web_port     = node['devops']['web']['port']
 # ---------------------------------------------------------------------------
