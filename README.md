@@ -52,15 +52,12 @@ Read the following section of requirements carefully, they form the basis for th
 1. The cookbook should include a node attribute `['devops']['test_url']` which should point to your fork of the repository on github by default.
 1. The webserver should serve an index.html
 1. The website should display the following text, replacing test_url with the value of `node['devops']['test_url']`:
-```
-This website created by Chef for the Devops skill test located at <test_url>
-```
+  ```
+  This website created by Chef for the Devops skill test located at <test_url>
+  ```
 1. Include the default recipe from https://github.com/dreamnite/include_me
-
 1. Update metadata with all dependencies.
-
 1. Create a Berksfile to include dependencies. Make sure you use a proper source.
-
 1. Your cookbook should pass foodcritic with no errors. Sparing use of `~FC` syntax is acceptable, with an accompanying commented explanation.
 
 ### 2.1 Testing
