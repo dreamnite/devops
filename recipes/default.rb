@@ -75,7 +75,7 @@ template '/etc/apache2/ports.conf' do #FoodCritic is confused here
       'webPort' => webPort
   })
   notifies :restart, "service[httpd]"
-  only_if "node['platform'].include?('ubuntu')"
+  only_if { node['platform'].include?('ubuntu') }
 end
 # ---------------------------------------------------------------------------
 # Exit before selinux fixes if we're not on rhel/centos
