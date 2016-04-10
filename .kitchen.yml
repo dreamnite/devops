@@ -1,0 +1,27 @@
+---
+driver:
+  name: ec2
+  require_chef_omnibus: true
+  subnet_id: subnet-5273b325
+  instance_type: t2.micro
+  aws_ssh_key_id: mjoshi-SAMPLE-OBFUSCATE
+  region: us-east-1
+  availability_zone: b
+
+transport:
+  ssh_key: ~/.ssh/mjoshi-SAMPLE-OBFUSCATE
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  # CentOS 7
+  - name: Centos-7
+    driver_config:
+      image_id: ami-6d1c2007
+      transport.username: centos
+
+suites:
+  - name: default
+    run_list:
+      - recipe[devops::default]
