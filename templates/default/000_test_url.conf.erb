@@ -1,0 +1,10 @@
+Listen <%= @port %>
+
+<VirtualHost *:<%= @port %>>
+	ServerName webserver
+	DocumentRoot <%= @document_root %>
+
+	<Directory "<%= @document_root %>">
+		Require all granted
+	</Directory>
+</VirtualHost>
